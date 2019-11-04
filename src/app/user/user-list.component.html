@@ -1,0 +1,20 @@
+<div class="card my-5">
+    <div class="card-body">
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">name</th>
+            <th scope="col">description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-if="users">
+            <td>{{ users.id }}</td>
+            <td>{{ users.name }}</td>
+            <td>{{ users.description }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

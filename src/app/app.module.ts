@@ -7,7 +7,9 @@ import { MovieListComponent } from './movies/movie-list.component';
 import { SharedComponent } from './shared/shared.component';
 import { UserListComponent } from './user/user-list.component';
 import { HttpClientModule } from '@angular/common/http';
-import { UserService } from './service/user-service';
+import { UserService } from './service/user.service';
+import { RouterModule } from '@angular/router';
+import { MovieService } from './service/movie.service';
 
 @NgModule({
   declarations: [
@@ -20,9 +22,14 @@ import { UserService } from './service/user-service';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot([
+      {path:'user', component: UserListComponent},
+      {path:'welcome', component: MovieListComponent},
+      {path:'', redirectTo:'welcome', pathMatch: 'full'}
+    ])
   ],
-  providers: [UserService],
+  providers: [UserService,MovieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

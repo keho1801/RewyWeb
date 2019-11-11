@@ -1,17 +1,17 @@
 import { Component, OnInit } from "@angular/core";
 import { Movie } from './movie';
-import { MovieService } from './movie.service';
+import { MovieService } from '../service/movie.service';
 
 @Component({
     selector:"movies",
     templateUrl:"./movie-list.component.html",
     styleUrls: ['./movie-list.component.scss']
 })
-export class MovieListComponent
-                implements OnInit{
+export class MovieListComponent implements OnInit{
  pageTitle: string = "Movies";
  showImage: boolean = false;
  _listFilter: string;
+ movies: Movie[];
 
 get listFilter(): string {
     return this._listFilter;
@@ -23,7 +23,7 @@ set listFilter(value:string) {
 }
 filteredMovies: Movie[];
 
- movies: Movie[];
+
 // värden som är satta innan oninit
 
 
@@ -42,8 +42,13 @@ toggleImage(): void{
     this.showImage =!this.showImage
 }
 ngOnInit(): void{
- this.movies = this.movieService.getMovies();
- this.filteredMovies = this.movies;
+    this.movieService.getAllMovies().subscribe(data =>{
+        this.movies = data;
+        console.log(data);
+        this.filteredMovies = this.movies;
+    })
+ 
+ 
 }
 
 }
